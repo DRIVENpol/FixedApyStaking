@@ -146,4 +146,18 @@ contract Staking is Ownable {
         roi[1] = r[1];
         roi[2] = r[2];
     }
+
+    /// @dev Get the length of deposits array
+    function getDepositsLength() external view returns(uint256) {
+        return deposits.length;
+    }
+
+    /// @dev Get deposit's details
+    function getDepositDetails(uint256 id) external view returns(
+        uint256, uint256, uint256, uint256, uint256, address, bool) {
+            Deposit memory myDeposit = deposits[id];
+
+            return (myDeposit.id, myDeposit.amount, myDeposit.period,
+            myDeposit.startDate, myDeposit.endDate, myDeposit.owner, myDeposit.ended);
+        }
 }
